@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just waffle 就是鬆餅</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 設定整個頁面背景和字型樣式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            overflow-x: hidden;
+        }
+
+        /* 設定商品資訊區塊的樣式，使用網格佈局 */
+        .text-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1200px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .text-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #0e9cf4;
+            border-radius: 8px;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .text-content b {
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .dropdown-toggle {
+            font-size: 18px;
+            cursor: pointer;
+            padding: 5px;
+            display: inline-block;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            width: 150px;
+            z-index: 10;
+            border-radius: 8px;
+        }
+
+        .dropdown-item {
+            padding: 10px;
+            text-decoration: none;
+            color: black;
+            display: block;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .text-block:hover .dropdown {
+            display: block;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .carousel img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .carousel img.active {
+            display: block;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(27, 26, 26, 0.5);
+            color: white;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+
+        .arrow:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .info-section {
+            text-align: center;
+            padding: 20px;
+            font-size: 30px;
+            margin: 0 auto;
+            max-width: 1200px;
+            border: none;
+        }
+
+        .image-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .image-item {
+            text-align: center;
+        }
+
+        .image-item img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-item p {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .footer-section {
+            background-color: #5fabde;
+            color: rgb(0, 0, 0);
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            max-width: 1600px;
+            margin: 20px auto 0;
+            border-radius: 8px;
+        }
+
+        .footer-content h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .footer-content p {
+            margin: 5px 0;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links .social-icon {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        .social-links .social-icon:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- 商品資訊區塊 -->
+    <div class="text-section">
+        <div class="text-block">
+            <div class="text-content">
+                <b class="dropdown-toggle">商品資訊</b>
+            </div>
+            <div class="dropdown">
+                <a href="#" class="dropdown-item">奶酥</a>
+                <a href="#" class="dropdown-item">藍莓</a>
+                <a href="#" class="dropdown-item">紅豆煉乳</a>
+                <a href="#" class="dropdown-item">巧克力鮮奶油</a>
+                <a href="#" class="dropdown-item">抹茶紅豆</a>
+            </div>
+        </div>
+        <div class="text-block">
+            <div class="text-content">
+                <b class="dropdown-toggle">特殊搭配</b>
+            </div>
+            <div class="dropdown">
+                <a href="#" class="dropdown-item">火腿起司</a>
+                <a href="#" class="dropdown-item">鮪魚玉米沙拉</a>
+                <a href="#" class="dropdown-item">燻雞生菜沙拉</a>
+                <a href="#" class="dropdown-item">醬燒里肌生菜</a>
+                <a href="#" class="dropdown-item">龍蝦生菜沙拉</a>
+            </div>
+        </div>
+        <div class="text-block">
+            <div class="text-content">
+                <b class="dropdown-toggle">限時＆限定</b>
+            </div>
+            <div class="dropdown">
+                <a href="#" class="dropdown-item">藍莓無雙</a>
+                <a href="#" class="dropdown-item">草莓無雙</a>
+                <a href="#" class="dropdown-item">蜂蜜奇異果</a>
+            </div>
+        </div>
+        <div class="text-block">
+            <div class="text-content">
+                <b class="dropdown-toggle">官方社群網站</b>
+            </div>
+            <div class="dropdown">
+                <a href="https://spot.line.me/detail/750047261186068701" class="dropdown-item">LINE</a>
+                <a href="https://www.facebook.com/justwaffle.fongshan/?locale=zh_TW" class="dropdown-item">Facebook</a>
+                <a href="https://www.instagram.com/justwaffle_fongshan" class="dropdown-item">Instagram</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 輪播圖 -->
+    <div class="carousel">
+        <img src="c:\Users\Jungart\OneDrive\桌面\01.jpg" class="active">
+        <img src="C:\Users\Jungart\OneDrive\桌面\2.jpg">
+        <img src="c:\Users\Jungart\OneDrive\桌面\3.jpg">
+        <img src="c:\Users\Jungart\OneDrive\桌面\4.jpg">
+        <img src="c:\Users\Jungart\OneDrive\桌面\5.jpg">
+        <img src="c:\Users\Jungart\OneDrive\桌面\6.jpg">
+        <button class="arrow left">&#9664;</button>
+        <button class="arrow right">&#9654;</button>
+    </div>
+
+    <!-- 最新消息區 -->
+    <div class="info-section">
+        <p>最新消息</p>
+    </div>
+
+    <!-- 縮圖顯示區域 -->
+    <div class="image-row">
+        <div class="image-item">
+            <img src="c:\Users\Jungart\OneDrive\桌面\11.jpg" alt="圖片1">
+            <p>草莓無雙！</p>
+        </div>
+        <div class="image-item">
+            <img src="c:\Users\Jungart\OneDrive\桌面\22.jpeg" alt="圖片2">
+            <p>新品－熱銷</p>
+        </div>
+        <div class="image-item">
+            <img src="c:\Users\Jungart\OneDrive\桌面\33.jpg" alt="圖片3">
+            <p>季節限定</p>
+        </div>
+    </div>
+
+    <!-- 黃色底部區塊 -->
+    <div class="footer-section">
+        <div class="footer-content">
+            <h2>Just waffle 就是鬆餅</h2>
+            <p>地址:高雄市鳳山區中山路93號</p>
+            <p>服務時間:星期二至星期日</p>
+            <p>聯絡電話:0975 225 552</p>
+            <p>© 李駿江 版權所有</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/justwaffle.fongshan/?locale=zh_TW" class="social-icon">Facebook</a>
+                <a href="https://www.instagram.com/justwaffle_fongshan" class="social-icon">Instagram</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('.carousel img');
+        const prevButton = document.querySelector('.arrow.left');
+        const nextButton = document.querySelector('.arrow.right');
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            images.forEach((img, index) => {
+                img.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateCarousel();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateCarousel();
+        });
+
+        updateCarousel();
+    </script>
+</body>
+</html>
